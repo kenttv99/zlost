@@ -1,0 +1,126 @@
+@import './tokens.css';
+@import './reset.css';
+
+/* Layout Container */
+.container {
+  width: 100%;
+  max-width: 1240px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 24px;
+  padding-right: 24px;
+}
+
+@media (min-width: 768px) {
+  .container {
+    padding-left: 48px;
+    padding-right: 48px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .container {
+    padding-left: 64px;
+    padding-right: 64px;
+  }
+}
+
+/* Typography styles */
+.serif-title {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+}
+
+.handwritten {
+  font-family: var(--font-hand);
+  font-style: italic;
+  transform: rotate(-3deg);
+  display: inline-block;
+  color: var(--accent-warmth);
+  user-select: none;
+}
+
+.section-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  display: inline-block;
+  opacity: 0.75;
+}
+
+/* Sections Theme Classes */
+.theme-dark {
+  background-color: var(--bg-dark-primary);
+  color: var(--text-dark-primary);
+}
+
+.theme-light {
+  background-color: var(--bg-light-primary);
+  color: var(--text-light-primary);
+}
+
+/* Ambient 3D canvas viewport overlay */
+.webgl-canvas-container {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.85;
+  transition: opacity 0.5s ease;
+}
+
+.content-wrapper {
+  position: relative;
+  z-index: 1;
+}
+
+/* Interactive Pill Button */
+.btn-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 16px 36px;
+  border-radius: var(--radius-full);
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  transition: all 0.35s var(--ease-smooth);
+  text-decoration: none;
+}
+
+.btn-pill-light {
+  background-color: #FFFFFF;
+  color: #171614;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+}
+
+.btn-pill-light:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 14px 40px rgba(255, 255, 255, 0.2);
+}
+
+.btn-pill-dark {
+  background-color: #171614;
+  color: #FAF8F5;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.18);
+}
+
+.btn-pill-dark:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 14px 35px rgba(0, 0, 0, 0.35);
+  background-color: #0E0D0C;
+}
+
+/* Smooth reveal animation classes */
+.reveal-fade-up {
+  opacity: 0;
+  transform: translateY(30px);
+  will-change: transform, opacity;
+}

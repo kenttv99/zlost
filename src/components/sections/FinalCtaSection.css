@@ -1,0 +1,55 @@
+.final-cta-section {
+  position: relative;
+  padding: 100px 0 60px;
+}
+
+.final-cta-container {
+  max-width: 960px;
+}
+
+.final-cta-card {
+  background: #1B1A17;
+  border-radius: 32px;
+  padding: 80px 32px;
+  text-align: center;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.6);
+  margin-bottom: 60px;
+}
+
+@media (min-width: 768px) {
+  .final-cta-card {
+    padding: 96px 64px;
+  }
+}
+
+.final-cta-title {
+  font-size: clamp(2.6rem, 5vw, 4.4rem);
+  color: #FFFFFF;
+  margin-bottom: 20px;
+  line-height: 1.1;
+}
+
+.final-cta-instruction {
+  font-size: clamp(1.05rem, 1.6vw, 1.25rem);
+  color: var(--text-dark-secondary);
+  max-width: 540px;
+  margin: 0 auto 44px;
+  line-height: 1.5;
+}
+
+.final-cta-btn-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.footer-bar {
+  text-align: center;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.footer-bar p {
+  font-size: 0.85rem;
+  color: var(--text-dark-tertiary);
+}

@@ -1,0 +1,26 @@
+.program-section {
+  position: relative;
+  padding: 120px 0 100px;
+}
+
+.program-container {
+  max-width: 900px;
+}
+
+.program-header {
+  margin-bottom: 50px;
+}
+
+.program-label {
+  color: #726E66;
+}
+
+.program-title {
+  font-size: clamp(2.4rem, 4.5vw, 4rem);
+  color: #171614;
+  line-height: 1.1;
+}
+
+.program-accordion-wrapper {
+  background: transparent;
+}

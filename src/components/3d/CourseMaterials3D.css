@@ -1,0 +1,193 @@
+.course-materials-3d-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 480px;
+  height: 480px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.materials-3d-canvas {
+  position: relative;
+  width: 320px;
+  height: 440px;
+  transform-style: preserve-3d;
+  transition: transform 0.2s cubic-bezier(0.2, 0, 0.2, 1);
+  will-change: transform;
+}
+
+.materials-glow-layer {
+  position: absolute;
+  inset: -20px;
+  background: radial-gradient(circle, rgba(210, 83, 56, 0.2) 0%, rgba(224, 169, 109, 0.1) 40%, transparent 70%);
+  filter: blur(35px);
+  z-index: 0;
+  pointer-events: none;
+  transform: translateZ(-50px);
+}
+
+/* Realistic Smartphone Device */
+.device-mockup {
+  position: absolute;
+  top: 40px;
+  left: 20px;
+  width: 230px;
+  height: 380px;
+  background-color: #1A1917;
+  border: 4px solid #2F2D29;
+  border-radius: 36px;
+  padding: 12px;
+  box-shadow: 
+    0 25px 50px -12px rgba(0, 0, 0, 0.35),
+    0 0 0 1px rgba(255, 255, 255, 0.1);
+  z-index: 2;
+  transform: translateZ(40px);
+}
+
+.device-speaker {
+  width: 40px;
+  height: 4px;
+  background: #3A3732;
+  border-radius: 4px;
+  margin: 0 auto 10px;
+}
+
+.device-screen {
+  background: linear-gradient(165deg, #24221E 0%, #151412 100%);
+  width: 100%;
+  height: calc(100% - 14px);
+  border-radius: 26px;
+  padding: 20px 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.screen-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.screen-tag {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--accent-warmth);
+}
+
+.screen-battery {
+  width: 16px;
+  height: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 2px;
+}
+
+.screen-content {
+  margin-top: auto;
+}
+
+.screen-title {
+  font-size: 2.2rem;
+  color: #FAF8F5;
+  line-height: 0.95;
+  margin-bottom: 6px;
+}
+
+.screen-subtitle {
+  font-size: 0.8rem;
+  color: var(--text-dark-secondary);
+  margin-bottom: 20px;
+}
+
+.screen-audio-card {
+  background: rgba(255, 255, 255, 0.07);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 14px;
+  padding: 10px 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.play-indicator {
+  display: flex;
+  align-items: flex-end;
+  gap: 2px;
+  height: 18px;
+}
+
+.soundwave-bar {
+  width: 3px;
+  background: var(--accent-warmth);
+  border-radius: 2px;
+  animation: soundwave 1.2s ease-in-out infinite alternate;
+}
+.soundwave-bar:nth-child(1) { height: 60%; animation-delay: 0.1s; }
+.soundwave-bar:nth-child(2) { height: 100%; animation-delay: 0.3s; }
+.soundwave-bar:nth-child(3) { height: 40%; animation-delay: 0.2s; }
+
+@keyframes soundwave {
+  0% { transform: scaleY(0.3); }
+  100% { transform: scaleY(1); }
+}
+
+.audio-title {
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: #FFF;
+}
+
+.audio-time {
+  display: block;
+  font-size: 0.65rem;
+  color: var(--text-dark-tertiary);
+}
+
+/* Physical PDF Guide Layer behind Phone */
+.guide-mockup {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  width: 200px;
+  height: 310px;
+  background: #EFECE4;
+  border-radius: 12px;
+  border-left: 5px solid #2B2824;
+  padding: 24px 18px;
+  color: #1B1A18;
+  box-shadow: 
+    0 20px 40px rgba(0, 0, 0, 0.2),
+    0 1px 2px rgba(0, 0, 0, 0.08);
+  z-index: 1;
+  transform: translateZ(10px) rotateZ(6deg);
+}
+
+.guide-badge {
+  display: inline-block;
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  background: #DFDACF;
+  padding: 4px 8px;
+  border-radius: 4px;
+  margin-bottom: 20px;
+}
+
+.guide-title {
+  font-size: 1.6rem;
+  line-height: 1.05;
+  display: block;
+  margin-bottom: 12px;
+}
+
+.guide-note {
+  font-size: 0.75rem;
+  color: #6A665E;
+  line-height: 1.35;
+}

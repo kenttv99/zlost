@@ -1,0 +1,26 @@
+.faq-section {
+  position: relative;
+  padding: 110px 0 130px;
+}
+
+.faq-container {
+  max-width: 860px;
+}
+
+.faq-header {
+  margin-bottom: 50px;
+}
+
+.faq-label {
+  color: #726E66;
+}
+
+.faq-title {
+  font-size: clamp(2.4rem, 4.5vw, 4rem);
+  color: #171614;
+  line-height: 1.1;
+}
+
+.faq-accordion-wrapper {
+  border-top: 1px solid var(--border-light);
+}

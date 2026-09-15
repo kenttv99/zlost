@@ -1,0 +1,45 @@
+:root {
+  /* Color Palette - Dark Surfaces */
+  --bg-dark-primary: #151412;
+  --bg-dark-surface: #1E1D1A;
+  --bg-dark-elevated: #2A2824;
+  --border-dark: rgba(255, 255, 255, 0.1);
+  --border-dark-strong: rgba(255, 255, 255, 0.2);
+
+  /* Color Palette - Light Surfaces */
+  --bg-light-primary: #F5F3ED;
+  --bg-light-surface: #EDEAE1;
+  --bg-light-card: #FFFFFF;
+  --border-light: rgba(0, 0, 0, 0.08);
+  --border-light-strong: rgba(0, 0, 0, 0.16);
+
+  /* Typography Colors */
+  --text-dark-primary: #FAF8F5;
+  --text-dark-secondary: #B1ACA2;
+  --text-dark-tertiary: #7D786F;
+
+  --text-light-primary: #181715;
+  --text-light-secondary: #6A665E;
+  --text-light-tertiary: #969188;
+
+  /* Accent & Emotional Energy */
+  --accent-ember: #D25338;
+  --accent-ember-glow: rgba(210, 83, 56, 0.35);
+  --accent-warmth: #E0A96D;
+  --accent-badge-bg: #EAE6DB;
+  --accent-badge-text: #2C2925;
+
+  /* Typography Scale */
+  --font-serif: 'Cormorant Garamond', Georgia, serif;
+  --font-sans: 'Manrope', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-hand: 'Caveat', cursive;
+
+  /* Transitions & Radii */
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-full: 9999px;
+  
+  --ease-smooth: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-spring: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}

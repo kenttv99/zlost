@@ -1,0 +1,74 @@
+.audience-section {
+  position: relative;
+  padding: 120px 0;
+  transition: background-color 0.4s ease;
+}
+
+.audience-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 48px;
+  align-items: center;
+}
+
+@media (min-width: 992px) {
+  .audience-container {
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 72px;
+  }
+}
+
+.audience-label {
+  color: #726E66;
+  margin-bottom: 36px;
+}
+
+.audience-points-list {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.audience-point-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.audience-point-dash {
+  font-size: 1.4rem;
+  color: #8C867C;
+  line-height: 1.2;
+  font-weight: 300;
+}
+
+.audience-point-text {
+  font-size: clamp(1.1rem, 1.6vw, 1.28rem);
+  color: #24221F;
+  line-height: 1.45;
+  font-weight: 450;
+}
+
+.audience-media-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.audience-image-frame {
+  width: 100%;
+  max-width: 440px;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 24px 50px -10px rgba(0, 0, 0, 0.14);
+}
+
+.audience-image {
+  width: 100%;
+  height: 480px;
+  object-fit: cover;
+  transition: transform 0.8s var(--ease-smooth);
+}
+
+.audience-image-frame:hover .audience-image {
+  transform: scale(1.03);
+}
