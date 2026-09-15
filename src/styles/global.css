@@ -1,5 +1,6 @@
 @import './tokens.css';
 @import './reset.css';
+@import './transitions.css';
 
 /* Layout Container */
 .container {
@@ -36,7 +37,6 @@
 .handwritten {
   font-family: var(--font-hand);
   font-style: italic;
-  transform: rotate(-3deg);
   display: inline-block;
   color: var(--accent-warmth);
   user-select: none;
@@ -52,7 +52,13 @@
   opacity: 0.75;
 }
 
-/* Sections Theme Classes */
+/* Base Section Styling with Layering */
+section {
+  position: relative;
+  z-index: 2;
+  transition: background-color 0.5s ease;
+}
+
 .theme-dark {
   background-color: var(--bg-dark-primary);
   color: var(--text-dark-primary);
@@ -63,21 +69,21 @@
   color: var(--text-light-primary);
 }
 
-/* Ambient 3D canvas viewport overlay */
+/* 3D WebGL Canvas Layer */
 .webgl-canvas-container {
   position: fixed;
   inset: 0;
   width: 100vw;
   height: 100vh;
-  z-index: 0;
+  z-index: 1;
   pointer-events: none;
-  opacity: 0.85;
   transition: opacity 0.5s ease;
 }
 
 .content-wrapper {
   position: relative;
-  z-index: 1;
+  z-index: 2;
+  overflow: clip;
 }
 
 /* Interactive Pill Button */
@@ -93,34 +99,29 @@
   letter-spacing: 0.02em;
   transition: all 0.35s var(--ease-smooth);
   text-decoration: none;
+  position: relative;
+  overflow: hidden;
 }
 
 .btn-pill-light {
   background-color: #FFFFFF;
   color: #171614;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
 }
 
 .btn-pill-light:hover {
-  transform: translateY(-2px) scale(1.02);
-  box-shadow: 0 14px 40px rgba(255, 255, 255, 0.2);
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 16px 40px rgba(255, 255, 255, 0.25);
 }
 
 .btn-pill-dark {
   background-color: #171614;
   color: #FAF8F5;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.18);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.22);
 }
 
 .btn-pill-dark:hover {
-  transform: translateY(-2px) scale(1.02);
-  box-shadow: 0 14px 35px rgba(0, 0, 0, 0.35);
-  background-color: #0E0D0C;
-}
-
-/* Smooth reveal animation classes */
-.reveal-fade-up {
-  opacity: 0;
-  transform: translateY(30px);
-  will-change: transform, opacity;
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45);
+  background-color: #0B0A09;
 }

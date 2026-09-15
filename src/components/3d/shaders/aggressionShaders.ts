@@ -1,4 +1,4 @@
-// Simplex 3D Noise and GLSL Shaders for the Aggression Core Sphere
+// Advanced Organic Emotional Core Shaders (Tension / Catharsis / Harmony)
 
 export const aggressionVertexShader = `
   uniform float uTime;
@@ -9,8 +9,9 @@ export const aggressionVertexShader = `
   varying vec3 vNormal;
   varying vec3 vPosition;
   varying float vDisplacement;
+  varying vec2 vUv;
 
-  // Classic 3D Simplex Noise
+  // 3D Simplex Noise
   vec4 permute(vec4 x){return mod(((x*34.0)+1.0)*x, 289.0);}
   vec4 taylorInvSqrt(vec4 r){return 1.79284291400159 - 0.85373472095314 * r;}
 
@@ -77,23 +78,22 @@ export const aggressionVertexShader = `
   void main() {
     vNormal = normal;
     vPosition = position;
+    vUv = uv;
 
-    // Organic noise displacement frequency and speed
-    float noiseFreq = 1.2 + uTension * 1.5;
-    float timeSpeed = uTime * (0.35 + uTension * 0.4);
+    // Layered turbulence noise for tactile emotional tension
+    float speed = uTime * (0.4 + uTension * 0.7);
+    float noise1 = snoise(position * (1.2 + uTension * 1.6) + vec3(speed, speed * 0.4, speed * 0.2));
+    float noise2 = snoise(position * 3.0 - vec3(speed * 0.6)) * 0.35 * uTension;
     
-    vec3 noiseCoord = position * noiseFreq + vec3(timeSpeed, timeSpeed * 0.5, 0.0);
-    float noiseVal = snoise(noiseCoord);
+    // Mouse proximity repulsion
+    float distMouse = length(position.xy - vec3(uMouse * 2.5, 0.0).xy);
+    float mouseImpulse = sin(max(0.0, 2.5 - distMouse) * 3.1415) * 0.25;
 
-    // Mouse influence
-    float distToMouse = length(position.xy - vec3(uMouse * 2.0, 0.0).xy);
-    float mouseWave = sin(distToMouse * 4.0 - uTime * 2.0) * 0.1 * (1.0 - clamp(distToMouse * 0.5, 0.0, 1.0));
+    float totalDisp = (noise1 * 0.45 * uTension) + noise2 + mouseImpulse;
+    vDisplacement = totalDisp;
 
-    float displacement = (noiseVal * 0.35 * uTension) + mouseWave;
-    vDisplacement = displacement;
-
-    vec3 newPos = position + normal * displacement;
-    gl_Position = projectionMatrix * modelViewMatrix * vec4(newPos, 1.0);
+    vec3 displacedPosition = position + normal * totalDisp;
+    gl_Position = projectionMatrix * modelViewMatrix * vec4(displacedPosition, 1.0);
   }
 `;
 
@@ -105,32 +105,42 @@ export const aggressionFragmentShader = `
   varying vec3 vNormal;
   varying vec3 vPosition;
   varying float vDisplacement;
+  varying vec2 vUv;
 
   void main() {
-    // View direction for Fresnel
     vec3 viewDir = normalize(cameraPosition - vPosition);
     vec3 normal = normalize(vNormal);
 
-    // Fresnel glow intensity
-    float fresnel = pow(1.0 - max(dot(viewDir, normal), 0.0), 2.8);
+    // Dynamic multi-layer Fresnel for cinematic edge glow
+    float fresnel1 = pow(1.0 - max(dot(viewDir, normal), 0.0), 3.0);
+    float fresnel2 = pow(1.0 - max(dot(viewDir, normal), 0.0), 1.5);
 
-    // Dynamic color transition based on uTension & scroll
-    // High tension: Ember red #D25338 and deep obsidian
-    // Low tension: Soft champagne gold #E0A96D and serene pearlescent mist #FAF8F5
-    vec3 colorTenseInner = vec3(0.12, 0.05, 0.04);
-    vec3 colorTenseGlow  = vec3(0.85, 0.32, 0.18);
+    // Color States:
+    // 1. High Tension (Anger/Repression): Molten Ember, Crimson, Obsidian Core
+    vec3 colTenseCore = vec3(0.08, 0.03, 0.02);
+    vec3 colTenseMid  = vec3(0.78, 0.25, 0.12);
+    vec3 colTenseRim  = vec3(1.00, 0.55, 0.25);
 
-    vec3 colorCalmInner  = vec3(0.18, 0.17, 0.16);
-    vec3 colorCalmGlow   = vec3(0.88, 0.72, 0.54);
+    // 2. Transformed Harmony: Pearl Warmth, Champagne Gold, Pure Ivory Rim
+    vec3 colCalmCore  = vec3(0.14, 0.13, 0.12);
+    vec3 colCalmMid   = vec3(0.85, 0.68, 0.48);
+    vec3 colCalmRim   = vec3(0.98, 0.94, 0.88);
 
-    vec3 baseInner = mix(colorCalmInner, colorTenseInner, uTension);
-    vec3 baseGlow  = mix(colorCalmGlow, colorTenseGlow, uTension);
+    vec3 currentCore = mix(colCalmCore, colTenseCore, uTension);
+    vec3 currentMid  = mix(colCalmMid, colTenseMid, uTension);
+    vec3 currentRim  = mix(colCalmRim, colTenseRim, uTension);
 
-    vec3 finalColor = mix(baseInner, baseGlow, fresnel + vDisplacement * 0.8);
+    // Blend layers based on displacement and fresnel
+    vec3 color = mix(currentCore, currentMid, clamp(vDisplacement * 1.5 + 0.3, 0.0, 1.0));
+    color = mix(color, currentRim, fresnel1);
 
-    // Soft opacity falloff for non-intrusive backdrop
-    float alpha = clamp(0.25 + fresnel * 0.65 + uTension * 0.2, 0.1, 0.85);
+    // Subtle pulsating heartbeat glow
+    float pulse = sin(uTime * 2.5) * 0.08 + 0.92;
+    color *= pulse;
 
-    gl_FragColor = vec4(finalColor, alpha);
+    // Atmospheric transparency so content is read clearly over it
+    float alpha = clamp(0.20 + fresnel2 * 0.70 + (uTension * 0.2), 0.08, 0.92);
+
+    gl_FragColor = vec4(color, alpha);
   }
 `;

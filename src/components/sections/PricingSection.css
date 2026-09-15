@@ -1,6 +1,11 @@
 .pricing-section {
   position: relative;
-  padding: 130px 0 110px;
+  padding: 140px 0 120px;
+  margin-top: -60px;
+  border-top-left-radius: clamp(32px, 5vw, 56px);
+  border-top-right-radius: clamp(32px, 5vw, 56px);
+  box-shadow: 0 -25px 50px rgba(0, 0, 0, 0.2);
+  z-index: 9;
 }
 
 .pricing-container {
@@ -71,6 +76,11 @@
   display: flex;
   align-items: center;
   gap: 14px;
+  transition: transform 0.3s ease;
+}
+
+.pricing-feature-item:hover {
+  transform: translateX(6px);
 }
 
 .pricing-feature-icon {

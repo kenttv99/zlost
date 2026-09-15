@@ -1,0 +1,86 @@
+/* Cinematic Scroll Transitions & Screen Choreography */
+
+.screen-panel {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  will-change: transform, clip-path, opacity;
+  overflow: hidden;
+}
+
+/* Stacking Card / Curtain Overlap Effects */
+.curtain-panel {
+  box-shadow: 0 -25px 60px rgba(0, 0, 0, 0.35);
+}
+
+.curtain-panel-rounded {
+  border-top-left-radius: clamp(32px, 5vw, 64px);
+  border-top-right-radius: clamp(32px, 5vw, 64px);
+}
+
+/* Kinetic Title Mask Reveal */
+.split-title-mask {
+  overflow: hidden;
+  display: block;
+}
+
+.split-title-char {
+  display: inline-block;
+  transform: translateY(110%);
+  transition: transform 0.8s var(--ease-smooth);
+  will-change: transform;
+}
+
+.in-view .split-title-char {
+  transform: translateY(0);
+}
+
+/* Sticky Presentation Stage for High-Impact Sections */
+.sticky-scene-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.sticky-scene-viewport {
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+/* Card 3D Entry Perspective */
+.perspective-card-entry {
+  perspective: 1400px;
+  transform-style: preserve-3d;
+}
+
+.perspective-card-body {
+  transition: transform 0.6s var(--ease-smooth), box-shadow 0.6s ease;
+  will-change: transform;
+}
+
+/* Smooth Glow Pulse on Transition Anchors */
+.glow-pulse {
+  position: relative;
+}
+
+.glow-pulse::before {
+  content: '';
+  position: absolute;
+  inset: -15px;
+  background: radial-gradient(circle, var(--accent-ember-glow) 0%, transparent 70%);
+  filter: blur(20px);
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.6;
+  animation: pulseAura 4s ease-in-out infinite alternate;
+}
+
+@keyframes pulseAura {
+  0% { transform: scale(0.92); opacity: 0.4; }
+  100% { transform: scale(1.08); opacity: 0.75; }
+}
