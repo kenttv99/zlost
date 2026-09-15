@@ -118,24 +118,23 @@ export const App: React.FC = () => {
       }
     );
 
-    // Screen 3: Value Section (Dark Immersion Curtain)
-    gsap.fromTo('#value',
-      { y: 90, scale: 0.98 },
+    // Screen 3: Value Section - Meaningful photographic parallax inside frame
+    gsap.fromTo('#value .value-image',
+      { yPercent: -8 },
       {
         scrollTrigger: {
           trigger: '#value',
-          start: 'top 95%',
-          end: 'top 40%',
-          scrub: 0.8
+          start: 'top bottom',
+          end: 'bottom top',
+          scrub: 1.0
         },
-        y: 0,
-        scale: 1,
-        ease: 'power2.out'
+        yPercent: 8,
+        ease: 'none'
       }
     );
 
-    gsap.fromTo('.value-headline',
-      { opacity: 0, y: 50, letterSpacing: '0.04em' },
+    gsap.fromTo('#value .value-content > *',
+      { opacity: 0, y: 32 },
       {
         scrollTrigger: {
           trigger: '#value',
@@ -144,8 +143,8 @@ export const App: React.FC = () => {
         },
         opacity: 1,
         y: 0,
-        letterSpacing: '-0.02em',
-        duration: 1.1,
+        duration: 0.9,
+        stagger: 0.12,
         ease: 'power3.out'
       }
     );
