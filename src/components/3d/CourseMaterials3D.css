@@ -9,6 +9,14 @@
   justify-content: center;
 }
 
+@media (max-width: 640px) {
+  .course-materials-3d-wrapper {
+    height: 380px;
+    transform: scale(0.82);
+    transform-origin: center center;
+  }
+}
+
 .materials-3d-canvas {
   position: relative;
   width: 320px;

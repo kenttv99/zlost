@@ -15,17 +15,17 @@
 
   /* Typography Colors */
   --text-dark-primary: #FAF8F5;
-  --text-dark-secondary: #B1ACA2;
-  --text-dark-tertiary: #7D786F;
+  --text-dark-secondary: #B8B3A8;
+  --text-dark-tertiary: #858076;
 
   --text-light-primary: #181715;
   --text-light-secondary: #6A665E;
   --text-light-tertiary: #969188;
 
   /* Accent & Emotional Energy */
-  --accent-ember: #D25338;
-  --accent-ember-glow: rgba(210, 83, 56, 0.35);
-  --accent-warmth: #E0A96D;
+  --accent-ember: #E05D38;
+  --accent-ember-glow: rgba(224, 93, 56, 0.45);
+  --accent-warmth: #E5B27A;
   --accent-badge-bg: #EAE6DB;
   --accent-badge-text: #2C2925;
 

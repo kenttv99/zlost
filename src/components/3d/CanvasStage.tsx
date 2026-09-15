@@ -45,7 +45,7 @@ export const CanvasStage: React.FC<CanvasStageProps> = ({ scrollProgress, tensio
     scene.add(group);
 
     // High-resolution Dynamic Shader Sphere
-    const sphereGeometry = new THREE.SphereGeometry(2.0, 96, 96);
+    const sphereGeometry = new THREE.SphereGeometry(2.3, 96, 96);
     const sphereMaterial = new THREE.ShaderMaterial({
       vertexShader: aggressionVertexShader,
       fragmentShader: aggressionFragmentShader,
@@ -57,8 +57,11 @@ export const CanvasStage: React.FC<CanvasStageProps> = ({ scrollProgress, tensio
     const sphereMesh = new THREE.Mesh(sphereGeometry, sphereMaterial);
     group.add(sphereMesh);
 
+    // Initial positioning in Hero section
+    group.position.set(1.6, 0.2, 0);
+
     // Dynamic ember particles
-    const particlesCount = 220;
+    const particlesCount = 280;
     const particlePositions = new Float32Array(particlesCount * 3);
     const originalPositions = new Float32Array(particlesCount * 3);
 
@@ -79,10 +82,10 @@ export const CanvasStage: React.FC<CanvasStageProps> = ({ scrollProgress, tensio
     particlesGeometry.setAttribute('position', new THREE.BufferAttribute(particlePositions, 3));
 
     const particlesMaterial = new THREE.PointsMaterial({
-      color: 0xE28B57,
-      size: 0.05,
+      color: 0xE89862,
+      size: 0.055,
       transparent: true,
-      opacity: 0.5,
+      opacity: 0.65,
       blending: THREE.AdditiveBlending
     });
     const particles = new THREE.Points(particlesGeometry, particlesMaterial);
@@ -105,12 +108,12 @@ export const CanvasStage: React.FC<CanvasStageProps> = ({ scrollProgress, tensio
 
     // Animation Loop
     let animationFrameId: number;
-    let clock = new THREE.Clock();
+    const startTime = performance.now();
 
     const animate = () => {
       animationFrameId = requestAnimationFrame(animate);
 
-      const elapsedTime = clock.getElapsedTime();
+      const elapsedTime = (performance.now() - startTime) * 0.001;
       uniformsRef.current.uTime.value = elapsedTime;
 
       // Calculate scroll velocity

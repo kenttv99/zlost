@@ -1,11 +1,13 @@
 .final-cta-section {
   position: relative;
-  padding: 130px 0 60px;
-  margin-top: -60px;
-  border-top-left-radius: clamp(32px, 5vw, 56px);
-  border-top-right-radius: clamp(32px, 5vw, 56px);
-  box-shadow: 0 -25px 50px rgba(0, 0, 0, 0.4);
+  padding: 100px 0 60px;
   z-index: 10;
+}
+
+@media (max-width: 768px) {
+  .final-cta-section {
+    padding: 70px 0 40px;
+  }
 }
 
 .final-cta-container {
