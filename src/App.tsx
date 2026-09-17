@@ -317,7 +317,7 @@ export const App: React.FC = () => {
         <ValueSection onProgramClick={() => scrollToId('program')} />
         <OutcomesSection />
         <ProgramSection />
-        <FormatSection onPreviewClick={() => scrollToId('pricing')} />
+        <FormatSection onBuyClick={handleCheckout} />
         <ReviewsSection />
         <AuthorSection />
         <PricingSection onBuyClick={handleCheckout} />
