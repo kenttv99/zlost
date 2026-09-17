@@ -76,7 +76,15 @@
   width: 100%;
   height: 520px;
   object-fit: cover;
+  object-position: center 20%;
   transition: transform 0.8s var(--ease-smooth);
+}
+
+@media (max-width: 768px) {
+  .author-image {
+    height: 420px;
+    object-position: center 20%;
+  }
 }
 
 .author-image-frame:hover .author-image {
