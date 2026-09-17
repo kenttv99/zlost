@@ -3,7 +3,8 @@ import Lenis from 'lenis';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-import { CanvasStage } from './components/3d/CanvasStage';
+import { Suspense, lazy } from 'react';
+const CanvasStage = lazy(() => import('./components/3d/CanvasStage').then(m => ({ default: m.CanvasStage })));
 import { HeroSection } from './components/sections/HeroSection';
 import { AudienceSection } from './components/sections/AudienceSection';
 import { ValueSection } from './components/sections/ValueSection';
@@ -298,10 +299,16 @@ export const App: React.FC = () => {
     }
   };
 
+  const handleCheckout = () => {
+    window.location.href = '/api/payment/checkout';
+  };
+
   return (
     <div className="app-root">
       {/* Dynamic 3D WebGL Background Canvas */}
-      <CanvasStage scrollProgress={scrollProgress} tension={tension} />
+      <Suspense fallback={null}>
+        <CanvasStage scrollProgress={scrollProgress} tension={tension} />
+      </Suspense>
 
       {/* Main Page Content Flow with Screen-to-Screen Choreography */}
       <main className="content-wrapper">
@@ -313,9 +320,9 @@ export const App: React.FC = () => {
         <FormatSection onPreviewClick={() => scrollToId('pricing')} />
         <ReviewsSection />
         <AuthorSection />
-        <PricingSection onBuyClick={() => scrollToId('final-cta')} />
+        <PricingSection onBuyClick={handleCheckout} />
         <FaqSection />
-        <FinalCtaSection onDirectClick={() => window.open('https://instagram.com', '_blank')} />
+        <FinalCtaSection onDirectClick={handleCheckout} />
       </main>
     </div>
   );
