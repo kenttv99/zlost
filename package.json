@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "vite",
     "server": "node server/index.js",
+    "orders": "node scripts/view_orders.js",
     "build": "tsc -b && vite build",
     "lint": "oxlint",
     "preview": "vite preview"

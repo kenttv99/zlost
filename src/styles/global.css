@@ -126,3 +126,19 @@ section {
   box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
   background-color: #0B0A09;
 }
+
+/* Page Footer */
+.footer-bar {
+  text-align: center;
+  padding: 40px 20px 50px;
+  border-top: 1px solid var(--border-light);
+  background-color: var(--bg-light-primary);
+  position: relative;
+  z-index: 2;
+}
+
+.footer-bar p {
+  font-size: 0.85rem;
+  color: var(--text-light-tertiary);
+  letter-spacing: 0.02em;
+}

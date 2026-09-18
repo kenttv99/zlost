@@ -1,4 +1,5 @@
 import React from 'react';
+import { Check } from 'lucide-react';
 import { COURSE_CONTENT } from '../../data/courseData';
 import './ReviewsSection.css';
 
@@ -14,33 +15,35 @@ export const ReviewsSection: React.FC = () => {
         </div>
 
         <div className="reviews-list">
-          {reviews.items.map(item => (
-            <div key={item.id} className="review-card">
-              <div className="review-author-row">
-                <div className="review-avatar-frame">
-                  {item.avatarUrl ? (
-                    <img 
-                      src={item.avatarUrl} 
-                      alt={`${item.name}, ${item.age}`} 
-                      className="review-avatar-img"
-                      onError={(e) => {
-                        // Clean initials fallback if user hasn't provided the file yet
-                        (e.target as HTMLElement).style.display = 'none';
-                      }}
-                    />
-                  ) : null}
-                  <span className="review-avatar-fallback">{item.name.charAt(0)}</span>
-                </div>
-                <div className="review-author-meta">
-                  <h3 className="review-author-name">{item.name},</h3>
-                  <span className="review-author-age">{item.age}</span>
-                </div>
+          {reviews.items.map((item, idx) => (
+            <article key={item.id} className="review-card">
+              <span className="review-quote-mark" aria-hidden="true">“</span>
+
+              <div className="review-card-header">
+                <span className="review-tag">{item.tag}</span>
+                <span className="review-index">0{idx + 1}</span>
               </div>
 
               <div className="review-body">
                 <p className="review-quote">{item.quote}</p>
               </div>
-            </div>
+
+              <div className="review-card-footer">
+                <div className="review-author-meta">
+                  <span className="review-author-name">{item.name}</span>
+                  <span className="review-meta-dot">•</span>
+                  <span className="review-author-age">{item.age}</span>
+                  <span className="review-verified-badge">
+                    <Check size={12} strokeWidth={2.5} className="review-check-icon" />
+                    <span>прошла курс</span>
+                  </span>
+                </div>
+
+                <div className="review-note-wrapper">
+                  <span className="handwritten review-handwritten-note">{item.handwrittenNote}</span>
+                </div>
+              </div>
+            </article>
           ))}
         </div>
       </div>

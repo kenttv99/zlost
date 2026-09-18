@@ -14,7 +14,8 @@ export interface ReviewItem {
   id: string;
   name: string;
   age: string;
-  avatarUrl: string;
+  tag: string;
+  handwrittenNote: string;
   quote: string;
 }
 
@@ -137,21 +138,24 @@ export const COURSE_CONTENT = {
         id: "maria",
         name: "Мария",
         age: "29 лет",
-        avatarUrl: "/assets/review_maria.jpg",
+        tag: "Семья и отношения",
+        handwrittenNote: "«Меняется атмосфера в семье»",
         quote: "«После курса я стала гораздо раньше замечать, что начинаю злиться, и это даёт мне возможность остановиться. Уже чувствую, как меняется атмосфера в семье»."
       },
       {
         id: "alina",
         name: "Алина",
         age: "26 лет",
-        avatarUrl: "/assets/review_alina.jpg",
+        tag: "Принятие своих чувств",
+        handwrittenNote: "«Со мной всё в порядке»",
         quote: "«Я всегда думала, что просто слишком эмоциональная, и нужно быть спокойнее. Этот курс помог мне понять, что со мной всё в порядке. И дал реальные инструменты, а не просто теорию»."
       },
       {
         id: "ekaterina",
         name: "Екатерина",
         age: "32 года",
-        avatarUrl: "/assets/review_ekaterina.jpg",
+        tag: "Практический навык",
+        handwrittenNote: "«Без воды и реально работает»",
         quote: "«Самое ценное — это то, что всё очень по делу и без воды. Короткие видео, понятные объяснения и практики, которые реально работают»."
       }
     ] as ReviewItem[]
@@ -209,10 +213,5 @@ export const COURSE_CONTENT = {
         answer: "Да, в рамках курса действует прямая поддержка автора, где можно задать любой уточняющий вопрос по практикам."
       }
     ] as FaqItem[]
-  },
-  finalCta: {
-    title: "Готова начать путь к себе?",
-    instruction: "Нажимай на кнопку и приобретай полную версию курса.",
-    ctaText: "Купить курс"
   }
 };

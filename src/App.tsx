@@ -15,7 +15,6 @@ import { ReviewsSection } from './components/sections/ReviewsSection';
 import { AuthorSection } from './components/sections/AuthorSection';
 import { PricingSection } from './components/sections/PricingSection';
 import { FaqSection } from './components/sections/FaqSection';
-import { FinalCtaSection } from './components/sections/FinalCtaSection';
 
 import './styles/global.css';
 
@@ -268,23 +267,6 @@ export const App: React.FC = () => {
       }
     );
 
-    // Screen 10: Final CTA Pulse & Entrance
-    gsap.fromTo('.final-cta-card',
-      { opacity: 0, y: 70, scale: 0.95 },
-      {
-        scrollTrigger: {
-          trigger: '#final-cta',
-          start: 'top 80%',
-          toggleActions: 'play none none reverse'
-        },
-        opacity: 1,
-        y: 0,
-        scale: 1,
-        duration: 1.0,
-        ease: 'power3.out'
-      }
-    );
-
     return () => {
       masterTrigger.kill();
       ScrollTrigger.getAll().forEach(t => t.kill());
@@ -322,7 +304,10 @@ export const App: React.FC = () => {
         <AuthorSection />
         <PricingSection onBuyClick={handleCheckout} />
         <FaqSection />
-        <FinalCtaSection onDirectClick={handleCheckout} />
+        
+        <footer className="footer-bar">
+          <p>© {new Date().getFullYear()} «Я и Агрессия». Все права защищены.</p>
+        </footer>
       </main>
     </div>
   );
