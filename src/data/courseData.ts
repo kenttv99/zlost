@@ -168,7 +168,7 @@ export const COURSE_CONTENT = {
       "Этот курс — не про идеальность. Он про честность, глубину и практику. Про то, как быть в контакте со своими чувствами и при этом оставаться в близости с теми, кто рядом."
     ],
     quote: "Я создала этот курс, потому что знаю, как это важно.",
-    image: "/assets/anastasia_author.jpg",
+    image: "/assets/photo_3.jpg",
     telegramUsername: "@luchik_solnechnyi"
   },
   pricing: {
