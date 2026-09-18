@@ -15,17 +15,35 @@ import { ReviewsSection } from './components/sections/ReviewsSection';
 import { AuthorSection } from './components/sections/AuthorSection';
 import { PricingSection } from './components/sections/PricingSection';
 import { FaqSection } from './components/sections/FaqSection';
+import { SuccessPage } from './components/pages/SuccessPage';
 
 import './styles/global.css';
 
 gsap.registerPlugin(ScrollTrigger);
 
 export const App: React.FC = () => {
+  const [isSuccessPage, setIsSuccessPage] = useState(() => {
+    if (typeof window === 'undefined') return false;
+    return window.location.search.includes('payment=success') || window.location.pathname === '/success';
+  });
+
   const [scrollProgress, setScrollProgress] = useState(0);
   const [tension, setTension] = useState(1.0);
   const lenisRef = useRef<Lenis | null>(null);
 
   useEffect(() => {
+    const handlePopState = () => {
+      setIsSuccessPage(
+        window.location.search.includes('payment=success') || window.location.pathname === '/success'
+      );
+    };
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, []);
+
+  useEffect(() => {
+    if (isSuccessPage) return;
+
     // 1. Initialize Lenis Smooth Inertia Scroll
     const lenis = new Lenis({
       duration: 1.3,
@@ -272,7 +290,7 @@ export const App: React.FC = () => {
       ScrollTrigger.getAll().forEach(t => t.kill());
       lenis.destroy();
     };
-  }, []);
+  }, [isSuccessPage]);
 
   const scrollToId = (id: string) => {
     const el = document.getElementById(id);
@@ -284,6 +302,15 @@ export const App: React.FC = () => {
   const handleCheckout = () => {
     window.location.href = '/api/payment/checkout';
   };
+
+  const handleBackToHome = () => {
+    window.history.pushState({}, '', '/');
+    setIsSuccessPage(false);
+  };
+
+  if (isSuccessPage) {
+    return <SuccessPage onBackToHome={handleBackToHome} />;
+  }
 
   return (
     <div className="app-root">
