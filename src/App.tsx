@@ -300,6 +300,9 @@ export const App: React.FC = () => {
   };
 
   const handleCheckout = () => {
+    if (typeof window !== 'undefined' && typeof (window as any).ym === 'function') {
+      (window as any).ym(112779468, 'reachGoal', 'initiate_checkout');
+    }
     window.location.href = '/api/payment/checkout';
   };
 

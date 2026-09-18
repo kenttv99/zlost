@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { CheckCircle2, Send, Copy, Check, ArrowLeft, ShieldCheck } from 'lucide-react';
 import { COURSE_CONTENT } from '../../data/courseData';
 import './SuccessPage.css';
@@ -10,6 +10,13 @@ interface SuccessPageProps {
 export const SuccessPage: React.FC<SuccessPageProps> = ({ onBackToHome }) => {
   const { author } = COURSE_CONTENT;
   const [copied, setCopied] = useState(false);
+
+  useEffect(() => {
+    if (typeof window !== 'undefined' && typeof (window as any).ym === 'function') {
+      (window as any).ym(112779468, 'hit', window.location.href);
+      (window as any).ym(112779468, 'reachGoal', 'payment_success');
+    }
+  }, []);
 
   // Telegram handle can be configured in courseData.ts or via VITE_TELEGRAM_HANDLE
   const tgHandle = import.meta.env.VITE_TELEGRAM_HANDLE || author.telegramUsername || '@anastasia_psy';
